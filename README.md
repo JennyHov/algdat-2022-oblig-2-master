@@ -3,7 +3,7 @@
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
 * Jenny Hovland, s364545, s364545@oslomet.no
-* ...
+* Joachim Ivo Di Mattia Martinsen, s358995, s358995@oslomet.no
 
 # Arbeidsfordeling
 
