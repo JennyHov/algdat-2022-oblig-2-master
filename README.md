@@ -8,7 +8,7 @@ Oppgaven er levert av følgende studenter:
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Joachim har hatt hovedansvar for oppgave 1, 3, og 5. 
+* Joachim har hatt hovedansvar for oppgave 1, 2 og 3. 
 * Nicole har hatt hovedansvar for oppgave 4, 5 og 6. 
 * Jenny har hatt hovedansvar for oppgave 7, 8 og 9
 * Vi har i fellesskap løst oppgave 10. 
