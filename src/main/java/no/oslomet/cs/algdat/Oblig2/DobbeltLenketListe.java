@@ -4,9 +4,8 @@ package no.oslomet.cs.algdat.Oblig2;
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Objects;
+import javax.naming.NoPermissionException;
+import java.util.*;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -158,11 +157,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer ++;
         antall = 0;
 
-        //Metode 2
+        //Metode 2, kjører saktere enn første metode og beholder den derfor ikke
+        /*
         for (Node<T> t = hode; t != null; t = t.neste) {
             fjern(0);
-
         }
+         */
 
     }
 
@@ -207,7 +207,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next() {
-            throw new UnsupportedOperationException();
+            if (endringer != iteratorendringer){
+                throw new ConcurrentModificationException("Det er gjort endringer.");
+            }
+
+            if(!hasNext()){
+                throw new NoSuchElementException("Det er ikke flere igjen i listen.");
+            }
+
+            fjernOK = true;
+
+            T temp2 = denne.verdi;
+            denne = denne.neste;
+
+            return temp2;
         }
 
         @Override
