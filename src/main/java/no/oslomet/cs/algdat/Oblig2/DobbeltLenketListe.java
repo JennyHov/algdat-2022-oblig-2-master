@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -65,7 +66,38 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+
+        indeksKontroll(indeks, true); // true: indeks = antall er lovlig
+
+        if (indeks == 0) { // nye verdien skal legges først i listen
+            Node nyNode = new Node<>(verdi, null, hode); // Lager ny node
+
+            if (hode != null) {
+                hode.forrige = nyNode; // Endrer forrige peker av hode til den nye noden
+            }
+            hode = nyNode; // Bytter hode-pekeren til den nye noden
+        }
+        else if (indeks == antall) { // nye verdien skal legges bakerst
+            Node nyNode = new Node<>(verdi, hale, null); // Lager ny node
+
+            if (hale != null) {
+                hale.neste = nyNode;
+            }
+            hale = nyNode; // Bytter hale-pekeren til den nye noden
+        }
+        else { // nye verdien skal legges mellom to noder
+            Node<T> p = hode;
+            for (int i = 1; i < indeks; i++) p = p.neste; // p flyttes (indeks-1) ganger
+
+            Node<T> q = p.neste; // Lagrer noden etter p med en hjelpevaribel
+            Node nyNode = new Node<>(verdi,p,q); // Lager ny node med p og q som forrige og neste pekerne
+            p.neste = nyNode; // bytter p sin neste peker fra q til nye noden
+            q.forrige = nyNode; // bytter q sin forrige peker fra p til nye noden
+        }
+
+        endringer++;
+        antall++;
     }
 
     @Override
@@ -80,7 +112,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+        if (verdi == null) return -1;
+
+        Node<T> p = hode; // Lagrer hode Node med en hjelpevariabel
+
+        int indeks = 0; // Lagrer posisjonen/indeksen til verdien i dobbeltlenketlistet
+
+        while (p.verdi != verdi && p.neste != null) {
+            indeks++; // Oppdatere indeksen
+            p = p.neste; // Oppdatere hjelpevariablen
+        }
+
+        if (p.verdi != verdi) return -1; // Hvis verdien finnes ikke returneres det -1
+
+        return indeks; // Hvis verdien finnes i listen returneres det indeksen
     }
 
     @Override
@@ -102,16 +147,25 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void nullstill() {
 
         //Metode 1
+        //Må legge til en temp variabel for å kunne gjøe for løkken om igjen, hvis ikke så kjører den kun
+
+        //temp
         for(Node<T> t = hode; t != null; t = t.neste){
             t.verdi = null;
             t.forrige = t.neste = null;
         }
         hode = hale = null;
-        antall = 0;
         endringer ++;
+        antall = 0;
+
+        //Metode 2
+        for (Node<T> t = hode; t != null; t = t.neste) {
+            fjern(0);
+
         }
 
     }
+
 
     @Override
     public String toString() {
