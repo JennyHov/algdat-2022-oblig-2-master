@@ -147,8 +147,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         //Metode 1
         //Må legge til en temp variabel for å kunne gjøe for løkken om igjen, hvis ikke så kjører den kun
+        //Hvis ikke så er t.neste alltid null
 
-        //temp
+        //temp1 = ...
         for(Node<T> t = hode; t != null; t = t.neste){
             t.verdi = null;
             t.forrige = t.neste = null;
@@ -182,7 +183,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll();
+        return new DobbeltLenketListeIterator(indeks);
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
