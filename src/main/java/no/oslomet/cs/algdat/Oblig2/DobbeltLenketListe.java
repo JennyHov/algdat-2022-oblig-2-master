@@ -197,7 +197,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks) {
-            throw new UnsupportedOperationException();
+            //trenger node-navn fra tidligere oppgaver for å kunne legge inn peker
+            fjernOK = false; //Blir sann når next() kalles
+            iteratorendringer = endringer; //Teller endringer
         }
 
         @Override
