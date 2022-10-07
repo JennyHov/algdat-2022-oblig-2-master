@@ -70,7 +70,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean inneholder(T verdi) {
-        throw new UnsupportedOperationException();
+        return indeksTil(verdi) != -1;
     }
 
     @Override
@@ -80,7 +80,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+        if (verdi == null) return -1;
+
+        Node<T> p = hode; // Lagrer hode Node med en hjelpevariabel
+
+        int indeks = 0; // Lagrer posisjonen/indeksen til verdien i dobbeltlenketlistet
+
+        while (p.verdi != verdi && p.neste != null) {
+            indeks++; // Oppdatere indeksen
+            p = p.neste; // Oppdatere hjelpevariablen
+        }
+
+        if (p.verdi != verdi) return -1; // Hvis verdien finnes ikke returneres det -1
+
+        return indeks; // Hvis verdien finnes i listen returneres det indeksen
     }
 
     @Override
@@ -109,8 +122,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         hode = hale = null;
         antall = 0;
         endringer ++;
-        }
-
     }
 
     @Override
