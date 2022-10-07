@@ -183,7 +183,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Iterator<T> iterator(int indeks) {
-        indeksKontroll();
+        indeksKontroll(indeks, true);
         return new DobbeltLenketListeIterator(indeks);
     }
 
@@ -229,7 +229,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
+
         }
 
     } // class DobbeltLenketListeIterator
