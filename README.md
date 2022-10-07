@@ -20,3 +20,15 @@ I oppgave 1 så gikk vi frem ved å ...
 I oppgave 2 så brukte vi en ... til å ...
 
 I oppgave 3 så brukte vi en ... til å ...
+
+I oppgave 7 brukte vi først en if, if else og else. Fant ut av at det ikke fungerte fordi vi ikke fikk fjernet 
+elementene i midten. Derfor gikk vi over til å bruke en for løkke, kunne også evt brukt en while løkke. 
+Etter å ha laget en for løkke innså vi at vi måtte inkludere en temp variabel utenfor for at løkken kunne fortsette å
+kjøre. Hvis ikke så hadde den ikke kjørt flere ganger siden man setter neste variabel til null som ødelegger for løkken.
+Lagde også en 2 metode med samme for løkke og kjører tidsberegninger på begge. Metode 2 er treigere og derfor velger å
+legge den i kildekommentar, metode 1 blir stående. 
+
+I oppgave 8
+
+I oppgave 9
+

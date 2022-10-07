@@ -102,16 +102,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void nullstill() {
 
         //Metode 1
+        //Må legge til en temp variabel for å kunne gjøe for løkken om igjen, hvis ikke så kjører den kun
+
+        //temp
         for(Node<T> t = hode; t != null; t = t.neste){
             t.verdi = null;
             t.forrige = t.neste = null;
         }
         hode = hale = null;
-        antall = 0;
         endringer ++;
-        }
+        antall = 0;
 
+        //Metode 2
+        for (Node<T> t = hode; t != null; t = t.neste) {
+            fjern(0);
+
+        }
     }
+
 
     @Override
     public String toString() {
