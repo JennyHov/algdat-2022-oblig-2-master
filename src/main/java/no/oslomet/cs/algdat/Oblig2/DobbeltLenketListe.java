@@ -63,7 +63,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
-    // Tok utgangspunkt i fasiten for ukesoppgaver 39 for EnkeltLinketListe
     @Override
     public void leggInn(int indeks, T verdi) {
         Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
@@ -133,7 +132,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
-    // Tok utgangspunkt i fasiten for ukesoppgaver 39 for EnkeltLinketListe
     @Override
     public boolean fjern(T verdi) {
         if (verdi == null) return false;
@@ -178,7 +176,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return true;
     }
 
-    // Tok utgangspunkt i fasiten for ukesoppgaver 39 for EnkeltLinketListe
     @Override
     public T fjern(int indeks) {
         indeksKontroll(indeks,false); // false: indeks = antall er ulovlig
