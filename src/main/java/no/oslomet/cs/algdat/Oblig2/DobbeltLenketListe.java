@@ -115,13 +115,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public int indeksTil(T verdi) {
         if (verdi == null) return -1;
 
-        Node<T> p = hode; // Lagrer hode Node med en hjelpevariabel
+        Node<T> p = hode;       // Lagrer hode Node med en hjelpevariabel
 
-        int indeks = 0; // Lagrer posisjonen/indeksen til verdien i dobbeltlenketlistet
+        int indeks = 0;         // Lagrer posisjonen/indeksen til verdien i dobbeltlenketlistet
 
         while (p.verdi != verdi && p.neste != null) {
-            indeks++; // Oppdatere indeksen
-            p = p.neste; // Oppdatere hjelpevariablen
+            indeks++;           // Oppdatere indeksen
+            p = p.neste;        // Oppdatere hjelpevariablen
         }
 
         if (p.verdi != verdi) return -1; // Hvis verdien finnes ikke returneres det -1
@@ -134,14 +134,84 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    // Tok utgangspunkt i fasiten for ukesoppgaver 39 for EnkeltLinketListe
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException();
+        if (verdi == null) return false;
+        Node<T> q = hode, p = null; // q er noden som skal fjernes og p er noden foran q
+
+        if (antall == 1) {          // Hvis det er kun én verdi i listen
+            hode = null;
+            hale = null;
+        } else {
+            // Går gjennom listen for å finne første forekomster av verdi
+            while (q != null) {
+                if (q.verdi.equals(verdi)) break;
+                p = q; q = q.neste;
+            }
+
+            if (q == null) {
+                return false;           // verdien finnes ikke i listen
+            }
+            else if (q == hode) {       // Hvis verdien er første noden
+                hode = hode.neste;      // Flytter hode-pekeren til den neste i listen
+                hode.forrige = null;    // Kobler fra den første node fra listen
+            }
+            else if (q == hale) {       // Hvis verdien er siste noden
+                hale = p;               // Flytter hale-pekeren til nest siste node
+                hale.neste = null;      // Kobler fra den siste node fra listen
+            }
+            else { // Hvis verdien er mellom to andre noder
+                Node<T> r = q.neste;    // r er noden bak den som skal fjernes
+
+                // Flytter neste og forrige pekerne av de to andre noder slik at ingen peker til q
+                p.neste = r;
+                r.forrige = p;
+            }
+        }
+
+        q.verdi = null;
+        q.neste = null;
+
+        endringer++;
+        antall--;
+
+        return true;
     }
 
+    // Tok utgangspunkt i fasiten for ukesoppgaver 39 for EnkeltLinketListe
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks,false); // false: indeks = antall er ulovlig
+
+        T temp;
+
+        if (indeks == 0) {                // hvis første verdien skal fjernes
+            temp = hode.verdi;            // lagrer verdien som skal fjernes med en hjelpevariabel
+            hode = hode.neste;            // flytter hode-pekeren til neste node
+            hode.forrige = null;          // kobler fra første noden
+
+            if (antall == 1) hale = null; // hvis det er kun én verdi i listen
+        }
+        else {
+            Node<T> p = hode; // p er noden foran den som skal fjernes
+            for (int i = 0; i < indeks; i++) p = p.neste;
+
+            Node<T> q = p.neste;               // q er noden som skal fjernes
+            temp = q.verdi;                    // lagrer verdien som skal fjernes med en hjelpevariabel
+            if (q == hale) hale = p;           // hvis q er siste node
+
+            Node<T> r = q.neste;               // r er noden bak den som skal fjernes
+
+            // "hopper over" q
+            p.neste = r;
+            r.forrige = p;
+        }
+
+        endringer++;
+        antall--;
+
+        return temp;
     }
 
     @Override
