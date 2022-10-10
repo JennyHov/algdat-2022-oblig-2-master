@@ -322,7 +322,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new UnsupportedOperationException();
+        if (liste == null){
+            throw new NullPointerException("Mangler verdier.");
+        }
+
+        for(int i = 0; i < liste.antall() - 1; i++){
+            int min_index = i;
+            for (int j = i +1; j < liste.antall(); j++){
+                if((c.compare(liste.hent(j), liste.hent(min_index))) < 0){
+                    min_index = j;
+                }
+                T temp3 = liste.hent(min_index);
+                liste.oppdater(min_index, liste.hent(j));
+                liste.oppdater(j, temp3);
+            }
+        }
     }
 
 } // class DobbeltLenketListe
