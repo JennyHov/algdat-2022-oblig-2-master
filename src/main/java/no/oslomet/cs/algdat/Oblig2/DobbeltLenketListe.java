@@ -268,6 +268,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         private DobbeltLenketListeIterator(int indeks) {
             //trenger node-navn fra tidligere oppgaver for å kunne legge inn peker
+            denne = //(indeks);
             fjernOK = false; //Blir sann når next() kalles
             iteratorendringer = endringer; //Teller endringer
         }
@@ -282,16 +283,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if (endringer != iteratorendringer){
                 throw new ConcurrentModificationException("Det er gjort endringer.");
             }
-
             if(!hasNext()){
                 throw new NoSuchElementException("Det er ikke flere igjen i listen.");
             }
-
             fjernOK = true;
-
             T temp2 = denne.verdi;
             denne = denne.neste;
-
             return temp2;
         }
 
