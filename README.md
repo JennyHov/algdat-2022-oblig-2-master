@@ -34,5 +34,11 @@ I oppgave 8 bruker man next til å kunne flytte den nåværende noden en node fr
 feilemeldinger etter det oppgaven spurte om. Returnerer det lagde iterator objektet som oppgaven spør om. Dette gjøres
 under både iterator og iterator(indeks). Bortsett fra at under iterator(indeks) starter den med en gitt indeks. 
 
-I oppgave 9
+I oppgave 9 lagde vi først if setninger for å kunne kaste feilmeldinger som oppgaven spør om. Deretter  lages det enda
+en if setning med flere else if for å kunne fjerne noden til venstre for den daværende noden p. Disse if setningene 
+sjekker de forskjellige tilstandene som oppgaven ber om og returnerer de nye verdiene for nodene.
+
+I oppgave 10 lagde vi en for løkke med en inklusiv for løkke inni for å kunne sortere listen slik at vi kan finne det 
+minste tallet slik at man kan bytte på verdiene. Til slutt brukes metodene liste.hent og liste.oppdater for å kunne 
+fullføre oppgaven. 
 
