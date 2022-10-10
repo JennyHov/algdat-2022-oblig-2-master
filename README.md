@@ -25,9 +25,19 @@ I oppgave 3 så brukte vi en ... til å ...
 I oppgave 4 begynte vi med å sjekke om verdien er null og returnerer -1 vis det er det. Så gikk vi frem med å lage
 en hjelpevariabel lik hode-noden og int objekt for indeksen. Vi går gjennom listen med en while løkka opp til slutten
 av listen eller p.verdi er lik verdi. Vi legger til en til indeksen hver iterasjon av while-løkka. Hvis p.verdi er 
-ulik verdi, som mener at verdien finnes ikke i listen, så returnerer vi -1 ellers returnerer vi indeksen.
+ulik verdi, som mener at verdien finnes ikke i listen, så returnerer vi -1 ellers returnerer vi indeksen. For inneholder
+metoden bruker vi indeksTil(T verdi)-metoden og sjekker om den er ulik -1, altså om det finnes i listen eller ikke.
 
-I oppgave 5
+I oppgave 5 så gikk vi frem ved å sjekke for "null"-verdier og ulovlig indekser requireNonNull-metode og 
+indeksKontroll-metode fra Liste med leggInn verdi lik true. Hvis verdien er lik null(0), altså verdien skal legges 
+først i listen så lager vi en ny Node med gitt verdi, forrige peker lik "null" og neste peker lik hode. Hvis hode ikke 
+er "null" flytter vi forrige pekeren til nye noden også flytter vi hode pekeren til den nye node. Derimot hvis er 
+indeks er lik antall, altså verdien skal legges sist lager vi en ny node med forrige peker lik hale og neste peker 
+lik "null". Hvis hale ikke er "null" flytter vi neste pekeren til hale til nye noden også flytter vi hale pekeren til 
+nye noden. Ellers vis indeks er enten lik null(0) eller antall går vi frem og sette node p lik hode og bruker en
+for-løkka å flytte p indeks-1 ganger. Også lager vi node q som er noden foran p, med det lager vi nye noden med
+forrige peker lik p og neste peker lik q. Vi flytter p sin neste peker og q sin forrige peker til nye noden. Til slutt
+legger vi til en til endringer og antall.
 
 I oppgave 6
 
