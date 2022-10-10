@@ -268,7 +268,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         private DobbeltLenketListeIterator(int indeks) {
             //trenger node-navn fra tidligere oppgaver for å kunne legge inn peker
-            denne = //(indeks);
             fjernOK = false; //Blir sann når next() kalles
             iteratorendringer = endringer; //Teller endringer
         }
@@ -295,48 +294,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         @Override
         public void remove() {
             if(!fjernOK){
-                throw new IllegalStateException("Det er ikke tillat å fjerne elementer nå.");
+                throw new IllegalStateException("Det er ikke tillat å fjerne elementer nå!");
             }
             if(endringer != iteratorendringer){
                 throw new ConcurrentModificationException("Det er gjort endringer.");
             }
             fjernOK = false;
 
-            Node<T> p = (denne == null ? hale : denne.forrige);
-            if(p == hode){
-                if(p == hode){
-                    if(antall == 1){
-                        hode = null;
-                        hale = null;
-                    } else {
-                        hode = hode.neste;
-                        hode.forrige = null;
-                    }
-                } else if (p == hale){
-                    hale = hale.forrige;
-                    hale.neste = null;
-                } else {
-                    p.forrige.neste = p.neste;
-                    p.neste.forrige = p.forrige;
-                }
-            }
-            /*
-            if(p == hode){
-                if(antall == 1){
-                    hode = null;
-                    hale = null;
-                } else if(denne == null){
-                    hale = //Oppdateres på hvilken måte?
-                }
-            } else if(p == hale){
+            if (antall == 1){
+                hode = null;
+                hale = null;
+            } else if (denne == null){
                 hale = hale.forrige;
                 hale.neste = null;
+            } else if (denne.forrige == hode){
+                hode = denne;
+                denne.forrige = null;
+            } else {
+                denne.forrige = denne.forrige.forrige;
+                denne.forrige.neste = denne;
             }
-             */
             antall--;
             endringer++;
             iteratorendringer++;
-
         }
 
     } // class DobbeltLenketListeIterator
