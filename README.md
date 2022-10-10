@@ -22,6 +22,12 @@ I oppgave 2 så brukte vi en ... til å ...
 
 I oppgave 3 så brukte vi en ... til å ...
 
+I oppgave 4
+
+I oppgave 5
+
+I oppgave 6
+
 I oppgave 7 brukte vi først en if, if else og else. Fant ut av at det ikke fungerte fordi vi ikke fikk fjernet 
 elementene i midten. Derfor gikk vi over til å bruke en for løkke, kunne også evt brukt en while løkke. 
 Etter å ha laget en for løkke innså vi at vi måtte inkludere en temp variabel utenfor for at løkken kunne fortsette å
