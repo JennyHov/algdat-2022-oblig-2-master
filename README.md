@@ -22,7 +22,10 @@ I oppgave 2 så brukte vi en ... til å ...
 
 I oppgave 3 så brukte vi en ... til å ...
 
-I oppgave 4
+I oppgave 4 begynte vi med å sjekke om verdien er null og returnerer -1 vis det er det. Så gikk vi frem med å lage
+en hjelpevariabel lik hode-noden og int objekt for indeksen. Vi går gjennom listen med en while løkka opp til slutten
+av listen eller p.verdi er lik verdi. Vi legger til en til indeksen hver iterasjon av while-løkka. Hvis p.verdi er 
+ulik verdi, som mener at verdien finnes ikke i listen, så returnerer vi -1 ellers returnerer vi indeksen.
 
 I oppgave 5
 
