@@ -45,40 +45,79 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a) {
         Objects.requireNonNull(a,"Tabellen a er null!");
-        hode = hale = null;
+        hode = hale = null;                 // initialiserser null-verdier
         for (T t : a) {
-            if (t != null) {
-                Node node = new Node(t);
+            if (t != null) {                // unngår å ta med null-verdier fra tabell a
+                Node node = new Node(t);    // oppretter ny node
                 if (hode == null) {
-                    hode = hale = node;
+                    hode = hale = node;     // peker til første node i listen
                 } else {
-                    hale.neste = node;
-                    node.forrige = hale;
-                    hale = node;
+                    hale.neste = node;      // peker mot ny node
+                    node.forrige = hale;    // peker tilbake til forrige node
+                    hale = node;            // halen flyttes til ny node
                 }
-                antall++;
+                antall++;                   // økes med 1 for hver nye node som blir opprettet
             }
         }
         endringer = 0;
     }
 
+    // Programkode 1.2.3 a) fra kompendiet
+    private static void fratilKontroll(int antall, int fra, int til) {
+        if (fra < 0)
+            throw new IndexOutOfBoundsException
+                    ("fra(" + fra + ") er negativ!");
+
+        if (til > antall)
+            throw new IndexOutOfBoundsException
+                    ("til(" + til + ") > antall(" + antall + ")");
+
+        if (fra > til)
+            throw new IllegalArgumentException
+                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
+    }
+
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
+        fratilKontroll(antall, fra, til);
+        endringer = 0;
+        Liste<T> sub = new DobbeltLenketListe<>();
+
+        for (int i = fra; i < til; i++) {
+            T verdi = hent(i);
+            sub.leggInn(verdi);
+        }
+        return sub;
     }
 
     @Override
     public int antall() {
-        throw new UnsupportedOperationException();
+        return antall;          // returnerer antall fra for-løkken til DobbeltLenketListe(T[] a)
     }
 
     @Override
     public boolean tom() {
-        throw new UnsupportedOperationException();
+        if (hode == null) {
+            return true;
+        } else {
+            return false;
+        }    // dersom listen er tom, så returnerer metoden true
     }
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi, "Null-verdier er ikke tillatt"); // sjekker om verdi ikke er null
+        Node node = new Node(verdi);    // ny node
+        if (tom()) {
+            hode = hale = node; // peker på første node
+            node.forrige = node.neste = null;
+        } else {
+            hale.neste = node;  //  setter pekere
+            node.forrige = hale;
+            hale = node;
+        }
+        antall++;       // økes med 1
+        endringer++;    // økes med 1
+        return true;
     }
 
     @Override
@@ -117,6 +156,28 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         antall++;
     }
 
+    private Node<T> finnNode(int indeks) {
+        if (indeks < antall/2) {
+            if (indeks == 0) return hode;
+            Node midlertidig = hode;
+            int pos = 0;
+            while (pos < indeks) {
+                midlertidig = midlertidig.neste;
+                pos++;
+            }
+            return midlertidig;
+        } else {
+            if (indeks == antall-1) return hale;
+            Node midlertidig = hale;
+            int posisjon = antall-1;
+            while (posisjon > indeks) {
+                midlertidig = midlertidig.forrige;
+                posisjon--;
+            }
+            return midlertidig;
+        }
+    }
+
     @Override
     public boolean inneholder(T verdi) {
         return indeksTil(verdi) != -1;
@@ -124,7 +185,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
+        return finnNode(indeks).verdi;
     }
 
     @Override
@@ -147,7 +209,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(nyverdi);
+        T temp = hent(indeks);
+        finnNode(indeks).verdi = nyverdi;
+        endringer++;
+        return temp;
     }
 
     @Override
@@ -256,11 +322,33 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Node midlertidig = hode;                        // begynner med hode     
+        StringBuilder ut = new StringBuilder("[");      // lager ut variabel gjennom stringBuilder
+        if (tom()) {                                
+            return "[]";    // returnerer følgende når det er tomme lister
+        } else {
+            while (midlertidig.neste != null) {         // looper gjennom til siste node
+                ut.append(midlertidig.verdi + ", ");    // legger til verdi i ut variabelen
+                midlertidig = midlertidig.neste;        // går videre til neste node 
+            }
+            ut.append(midlertidig.verdi + "]");         // føyer til når listen er ferdig gjennomgått
+            return ut.toString();                       // returnerer ut variabelen eller listen som streng
+        }
     }
 
     public String omvendtString() {
-        throw new UnsupportedOperationException();
+        Node midlertidig = hale;                        // begynner med hale
+        StringBuilder ut = new StringBuilder("[");      // lager ut variable gjennom stringBuilder
+        if (tom()) {
+            return "[]";    // returner følgende når det er tomme lister
+        } else {
+            while (midlertidig.forrige != null) {       // looper gjennom til den første variabelen
+                ut.append(midlertidig.verdi + ", ");    // legger til verdi i ut variabelen
+                midlertidig = midlertidig.forrige;          // går videre til forrige node
+            }
+            ut.append(midlertidig.verdi + "]");
+            return ut.toString();                       // returnerer ut variabelen eller listen som streng (baklengs)
+        }
     }
 
     @Override
