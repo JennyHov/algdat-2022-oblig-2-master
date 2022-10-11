@@ -47,15 +47,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         hode = hale = null;                 // initialiserser null-verdier
         for (T t : a) {
             if (t != null) {                // unngår å ta med null-verdier fra tabell a
-                Node node = new Node(t);
+                Node node = new Node(t);    // oppretter ny node
                 if (hode == null) {
-                    hode = hale = node;
+                    hode = hale = node;     // peker til første node i listen
                 } else {
-                    hale.neste = node;
-                    node.forrige = hale;
-                    hale = node;
+                    hale.neste = node;      // peker mot ny node
+                    node.forrige = hale;    // peker tilbake til forrige node
+                    hale = node;            // halen flyttes til ny node
                 }
-                antall++;
+                antall++;                   // økes med 1 for hver nye node som blir opprettet
             }
         }
         endringer = 0;
@@ -67,12 +67,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
-        return antall;
+        return antall;          // returnerer antall fra for-løkken til DobbeltLenketListe(T[] a)
     }
 
     @Override
     public boolean tom() {
-        return hode == null;
+        return hode == null;    // dersom listen er tom, så returnerer metoden true
     }
 
     @Override
