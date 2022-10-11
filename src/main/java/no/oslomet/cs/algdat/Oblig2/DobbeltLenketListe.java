@@ -80,6 +80,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         fratilKontroll(antall, fra, til);
         endringer = 0;
         Liste<T> sub = new DobbeltLenketListe<>();
+
+        for (int i = fra; i < til; i++) {
+            T verdi = hent(i);
+            sub.leggInn(verdi);
+        }
+        return sub;
     }
 
     @Override
