@@ -61,6 +61,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer = 0;
     }
 
+    // Programkode 1.2.3 a) fra kompendiet
+    private static void fratilKontroll(int antall, int fra, int til) {
+        
+    }
+
     public Liste<T> subliste(int fra, int til) {
         fratilKontroll(antall, fra, til);
         endringer = 0;
