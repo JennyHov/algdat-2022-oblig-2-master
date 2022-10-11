@@ -298,17 +298,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void nullstill() {
 
         //Metode 1
-        Node<T> t = hode;
+        Node<T> p = hode;
         Node<T> q;
-        while(t != null){
-            q = t.neste;
-            t.neste = null;
-            t.verdi = null;
-            t = q;
+        while(p != null){
+            q = p.neste;
+            p.neste = null;
+            p.verdi = null;
+            p = q;
         }
         hode = hale = null;
         endringer ++;
         antall = 0;
+
+        /*
+        for(Node<T> t = hode; t != null; t = t.neste){
+            t.verdi = null;
+            t.forrige = t.neste = null;
+        }
+        hode = hale = null;
+        endringer ++;
+        antall = 0;
+         */
 
         /*
         Metode 2, kjører saktere enn første metode og beholder den derfor ikke
@@ -316,6 +326,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             fjern(0);
         }
          */
+
 
     }
 
@@ -357,7 +368,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Iterator<T> iterator(int indeks) {
-        indeksKontroll(indeks, true);
+        indeksKontroll(indeks, false);
         return new DobbeltLenketListeIterator(indeks);
     }
 
@@ -373,10 +384,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks) {
-            //trenger node-navn fra tidligere oppgaver for å kunne legge inn peker
-            //denne = finnNode(indeks);
-            fjernOK = false; //Blir sann når next() kalles
-            iteratorendringer = endringer; //Teller endringer
+            denne = finnNode(indeks);
+            fjernOK = false;
+            iteratorendringer = endringer;
         }
 
         @Override
