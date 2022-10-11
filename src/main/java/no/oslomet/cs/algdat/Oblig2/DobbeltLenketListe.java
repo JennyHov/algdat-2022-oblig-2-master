@@ -271,31 +271,31 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        Node current = hode;
+        Node midlertidig = hode;
         StringBuilder ut = new StringBuilder("[");
         if (tom()) {
             return "[]";
         } else {
-            while (current.neste != null) {
-                ut.append(current.verdi + ", ");
-                current = current.neste;
+            while (midlertidig.neste != null) {
+                ut.append(midlertidig.verdi + ", ");
+                midlertidig = midlertidig.neste;
             }
-            ut.append(current.verdi + "]");
+            ut.append(midlertidig.verdi + "]");
             return ut.toString();
         }
     }
 
     public String omvendtString() {
-        Node current = hale;
+        Node midlertidig = hale;
         StringBuilder ut = new StringBuilder("[");
         if (tom()) {
             return "[]";
         } else {
-            while (current.forrige != null) {
-                ut.append(current.verdi + ", ");
-                current = current.forrige;
+            while (midlertidig.forrige != null) {
+                ut.append(midlertidig.verdi + ", ");
+                current = midlertidig.forrige;
             }
-            ut.append(current.verdi + "]");
+            ut.append(midlertidig.verdi + "]");
             return ut.toString();
         }
     }
