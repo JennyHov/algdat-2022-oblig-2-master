@@ -298,13 +298,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void nullstill() {
 
         //Metode 1
-        Node<T> p = hode;
+        Node<T> t = hode;
         Node<T> q;
-        while(p != null){
-            q = p.neste;
-            p.neste = null;
-            p.verdi = null;
-            p = q;
+        while(t != null){
+            q = t.neste;
+            t.neste = null;
+            t.verdi = null;
+            t = q;
         }
         hode = hale = null;
         endringer ++;
@@ -315,16 +315,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         for (Node<T> t = hode; t != null; t = t.neste) {
             fjern(0);
         }
-         */
-
-        /*
-        for(Node<T> t = hode; t != null; t = t.neste){
-            t.verdi = null;
-            t.forrige = t.neste = null;
-        }
-        hode = hale = null;
-        endringer ++;
-        antall = 0;
          */
     }
 
