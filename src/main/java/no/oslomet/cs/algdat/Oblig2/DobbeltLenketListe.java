@@ -82,7 +82,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean leggInn(T verdi) {
         Objects.requireNonNull(verdi, "Null-verdier er ikke tillatt");
-        Node node = new Node(verdi);
+        Node node = new Node(verdi);                
         if (tom()) {
             hode = hale = node;
             node.forrige = node.neste = null;
@@ -271,32 +271,32 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        Node midlertidig = hode;
-        StringBuilder ut = new StringBuilder("[");
-        if (tom()) {
-            return "[]";
+        Node midlertidig = hode;                        // begynner med hode     
+        StringBuilder ut = new StringBuilder("[");      // lager ut variabel gjennom stringBuilder
+        if (tom()) {                                
+            return "[]";    // returnerer følgende når det er tomme lister
         } else {
-            while (midlertidig.neste != null) {
-                ut.append(midlertidig.verdi + ", ");
-                midlertidig = midlertidig.neste;
+            while (midlertidig.neste != null) {         // looper gjennom til siste node
+                ut.append(midlertidig.verdi + ", ");    // legger til verdi i ut variabelen
+                midlertidig = midlertidig.neste;        // går videre til neste node 
             }
-            ut.append(midlertidig.verdi + "]");
-            return ut.toString();
+            ut.append(midlertidig.verdi + "]");         // føyer til når listen er ferdig gjennomgått
+            return ut.toString();                       // returnerer ut variabelen eller listen som streng
         }
     }
 
     public String omvendtString() {
-        Node midlertidig = hale;
-        StringBuilder ut = new StringBuilder("[");
+        Node midlertidig = hale;                        // begynner med hale
+        StringBuilder ut = new StringBuilder("[");      // lager ut variable gjennom stringBuilder
         if (tom()) {
-            return "[]";
+            return "[]";    // returner følgende når det er tomme lister
         } else {
-            while (midlertidig.forrige != null) {
-                ut.append(midlertidig.verdi + ", ");
-                current = midlertidig.forrige;
+            while (midlertidig.forrige != null) {       // looper gjennom til den første variabelen
+                ut.append(midlertidig.verdi + ", ");    // legger til verdi i ut variabelen
+                midlertidig = midlertidig.forrige;          // går videre til forrige node
             }
             ut.append(midlertidig.verdi + "]");
-            return ut.toString();
+            return ut.toString();                       // returnerer ut variabelen eller listen som streng (baklengs)
         }
     }
 
