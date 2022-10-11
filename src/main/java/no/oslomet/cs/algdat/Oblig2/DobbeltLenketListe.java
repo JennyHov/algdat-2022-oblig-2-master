@@ -173,7 +173,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 midlertidig = midlertidig.forrige;
                 posisjon--;
             }
-            return midlertidig
+            return midlertidig;
         }
     }
 
