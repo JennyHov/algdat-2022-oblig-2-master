@@ -81,18 +81,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        Objects.requireNonNull(verdi, "Null-verdier er ikke tillatt");
-        Node node = new Node(verdi);                
+        Objects.requireNonNull(verdi, "Null-verdier er ikke tillatt"); // sjekker om verdi ikke er null
+        Node node = new Node(verdi);    // ny node
         if (tom()) {
-            hode = hale = node;
+            hode = hale = node; // peker på første node
             node.forrige = node.neste = null;
         } else {
-            hale.neste = node;
+            hale.neste = node;  //  setter pekere
             node.forrige = hale;
             hale = node;
         }
-        antall++;
-        endringer++;
+        antall++;       // økes med 1
+        endringer++;    // økes med 1
         return true;
     }
 
