@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import javax.naming.NoPermissionException;
 import java.util.*;
+import java.util.function.Consumer;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -285,6 +286,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         private DobbeltLenketListeIterator(int indeks) {
             //trenger node-navn fra tidligere oppgaver for å kunne legge inn peker
+            //denne = finnNode(indeks);
             fjernOK = false; //Blir sann når next() kalles
             iteratorendringer = endringer; //Teller endringer
         }
@@ -339,14 +341,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        if (liste == null){
+        if (liste == null) {
             throw new NullPointerException("Mangler verdier.");
         }
 
-        for(int i = 0; i < liste.antall() - 1; i++){
+        for (int i = 0; i < liste.antall() - 1; i++) {
             int min_index = i;
-            for (int j = i +1; j < liste.antall(); j++){
-                if((c.compare(liste.hent(j), liste.hent(min_index))) < 0){
+            for (int j = i + 1; j < liste.antall(); j++) {
+                if ((c.compare(liste.hent(j), liste.hent(min_index))) < 0) {
                     min_index = j;
                 }
                 T temp3 = liste.hent(min_index);
@@ -357,5 +359,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
 } // class DobbeltLenketListe
+
+
 
 
