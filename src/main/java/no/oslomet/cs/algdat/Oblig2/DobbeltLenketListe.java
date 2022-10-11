@@ -72,7 +72,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean tom() {
-        return hode == null;    // dersom listen er tom, så returnerer metoden true
+        if (hode == null) {
+            return true;
+        } else {
+            return false;
+        }    // dersom listen er tom, så returnerer metoden true
     }
 
     @Override
