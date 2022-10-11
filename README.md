@@ -28,27 +28,24 @@ verdi og sjekke om de er lik verdien som er gitt, hvis det er det returnerer vi 
 hele listen og fant ikke verdien returnerer det -1. For inneholder(T verdi) metoden bruker vi indeksTil(T verdi) metode
 og sjekke om der ulik -1, altså at verdien finnes i listen.
 
-I oppgave 5 så gikk vi frem ved å sjekke for "null"-verdier og ulovlig indekser requireNonNull-metode og 
-indeksKontroll-metode fra Liste med leggInn verdi lik true. Hvis verdien er lik null(0), altså verdien skal legges 
-først i listen så lager vi en ny Node med gitt verdi, forrige peker lik "null" og neste peker lik hode. Hvis hode ikke 
-er "null" flytter vi forrige pekeren til nye noden også flytter vi hode pekeren til den nye node. Så sjekker vi om antall
-er lik null(0) dvs. at listen er tom så setter vi hale lik hode slik at de peker på samme node. Derimot hvis indeks 
-er lik antall, altså verdien skal legges sist lager vi en ny node med forrige peker lik hale og neste peker 
-lik "null". Hvis hale ikke er "null" flytter vi neste pekeren til hale til nye noden også flytter vi hale pekeren til 
-nye noden. Ellers vis indeks er enten lik null(0) eller antall går vi frem og sette node p lik hode og bruker en
-for-løkka å flytte p indeks-1 ganger. Også lager vi node q som er noden foran p, med det lager vi nye noden med
-forrige peker lik p og neste peker lik q. Vi flytter p sin neste peker og q sin forrige peker til nye noden. Til slutt
-legger vi til en til endringer og antall.
+I oppgave 5 så gikk vi frem ved å sjekke hvis verdien skal legges først i listen så lager vi en ny Node med forrige peker 
+lik "null" og neste peker lik hode. Hvis hode ikke er "null" flytter vi forrige pekeren til nye noden også flytter vi 
+hode pekeren til den nye node. Så sjekker vi om listen er tom så setter vi hale lik hode slik at de peker på samme node. 
+Derimot hvis verdien skal legges sist lager vi en ny node med forrige peker lik hale og neste peker lik "null". Hvis 
+hale ikke er "null" flytter vi neste pekeren til hale til nye noden også flytter vi hale pekeren til nye noden. Ellers 
+hvis indeksen er enten lik null(0) eller antall går vi frem og sette node p lik hode og flytte p indeks-1 ganger med 
+for-løkke, også lager vi node q som er noden foran p. Med det lager vi nye noden med forrige peker lik p og neste peker 
+lik q. Vi flytter p sin neste peker og q sin forrige peker til nye noden.
 
-I oppgave 6 for den boolean fjern metode sjekket vi for null-verdier og returnerer false hvis det er det. Neste sjekker
-vi om antall er lik én, altså hvis det er kun én verdi i listen så setter vi hode og hale lik null(0). Ellers går vi
-gjennom listen for å finne første forekomster av verdi med en while-løkka. q er noden som skal fjernes og p er noden
-foran. Hvis q er "null" returneres det false, verdien finnes ikke. Hvis q er lik hode, altså første noden skal fjernes
-flytter vi hode til neste noden og forrige pekeren til null. Hvis q er lik hale, altså siste noden skal fjernes flytter
-vi hale til neste siste noden p og setter neste pekeren til "null". Hvis q ikke er noen av de nevnte og verdien er
-mellom to andre noder lager vi en ny Node r som er noden bak den som skal fjernes. Så flytter vi p sin neste peker til r
-og r sin forrige peker lik p slik at ingen noder peker til q. Til sist setter vi q sin verdi og neste til "null", legge
-til en til endringer, trekk en fra antall og returnere true.
+I oppgave 6 for boolean fjern(T verdi) brukte vi if-else metoder. Hvis det er kun én verdi i listen setter vi hode og 
+hale lik "null". Ellers går vi gjennom listen for å finne første forekomster av verdi. q er noden som skal fjernes og p 
+er noden foran. Hvis q er "null" verdien finnes ikke og det returnerer false. Hvis første noden skal fjernes flytter vi 
+hode til neste noden og kobler fra q. Hvis siste noden skal fjernes flytter vi hale til neste siste noden p og kobler 
+fra q. Hvis verdien er mellom to andre noder lager vi en ny Node r som er noden bak q. Så flytter vi neste og forrige 
+pekere for å koble fra q. For fjern(int indeks)-metode hvis første verdien skal fjernes tar vi varer på verdien og flytter 
+hode til neste noden og hvis det er kun én noden setter vi hale lik "null" ellers kobler vi hode fra verdien som skal 
+fjernes. Derimot flytter vi p indeks-2 ganger og tar vare på verdien. Hvis q er siste noden setter vi hale lik p og til
+sist "hopper" vi over q eller kobler fra ved å flytte neste og forrige pekere til p og r.
 
 I oppgave 7 brukte vi først en if, if else og else. Fant ut av at det ikke fungerte fordi vi ikke fikk fjernet 
 elementene i midten. Derfor gikk vi over til å bruke en for løkke, kunne også evt brukt en while løkke. 
