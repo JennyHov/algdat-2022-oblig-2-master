@@ -38,9 +38,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        hode = hale = null;
-        antall = 0;
-        endringer = 0;
     }
 
     public DobbeltLenketListe(T[] a) {
@@ -133,6 +130,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 hode.forrige = nyNode; // Endrer forrige peker av hode til den nye noden
             }
             hode = nyNode; // Bytter hode-pekeren til den nye noden
+            if (antall == 0) hale = hode; // hale og hode peker på samme node
         }
         else if (indeks == antall) { // nye verdien skal legges bakerst
             Node nyNode = new Node<>(verdi, hale, null); // Lager ny node
@@ -193,18 +191,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public int indeksTil(T verdi) {
         if (verdi == null) return -1;
 
-        Node<T> p = hode;       // Lagrer hode Node med en hjelpevariabel
+        Node<T> p = hode; // Lagrer hode Node med en hjelpevariabel
 
-        int indeks = 0;         // Lagrer posisjonen/indeksen til verdien i dobbeltlenketlistet
-
-        while (p.verdi != verdi && p.neste != null) {
-            indeks++;           // Oppdatere indeksen
-            p = p.neste;        // Oppdatere hjelpevariablen
+        for (int indeks = 0; indeks < antall; indeks++) { // går gjennom listen
+            if (p.verdi.equals(verdi)) return indeks;
+            p = p.neste; // flytter p til neste noden
         }
-
-        if (p.verdi != verdi) return -1; // Hvis verdien finnes ikke returneres det -1
-
-        return indeks; // Hvis verdien finnes i listen returneres det indeksen
+        return -1; // hvis verdien finnes ikke i listen returnerer det -1
     }
 
     @Override
@@ -269,13 +262,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (indeks == 0) {                // hvis første verdien skal fjernes
             temp = hode.verdi;            // lagrer verdien som skal fjernes med en hjelpevariabel
             hode = hode.neste;            // flytter hode-pekeren til neste node
-            hode.forrige = null;          // kobler fra første noden
 
             if (antall == 1) hale = null; // hvis det er kun én verdi i listen
+            else hode.forrige = null;     // kobler hode fra første noden hvis det er mer enn én node
         }
         else {
             Node<T> p = hode; // p er noden foran den som skal fjernes
-            for (int i = 0; i < indeks; i++) p = p.neste;
+            for (int i = 0; i < indeks - 1; i++) p = p.neste;
 
             Node<T> q = p.neste;               // q er noden som skal fjernes
             temp = q.verdi;                    // lagrer verdien som skal fjernes med en hjelpevariabel
@@ -285,7 +278,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
             // "hopper over" q
             p.neste = r;
-            r.forrige = p;
+            if (r != null) r.forrige = p;
         }
 
         endringer++;
