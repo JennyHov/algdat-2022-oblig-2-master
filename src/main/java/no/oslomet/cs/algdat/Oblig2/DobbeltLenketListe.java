@@ -133,7 +133,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks) {
-        
+        if (indeks < antall/2) {
+            if (indeks == 0) return hode;
+            Node midlertidig = hode;
+            int pos = 0;
+            while (pos < indeks) {
+                midlertidig = midlertidig.neste;
+                pos++;
+            }
+            return midlertidig;
+        } else {}
     }
 
     @Override
