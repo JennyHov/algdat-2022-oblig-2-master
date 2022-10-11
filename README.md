@@ -39,7 +39,15 @@ for-løkka å flytte p indeks-1 ganger. Også lager vi node q som er noden foran
 forrige peker lik p og neste peker lik q. Vi flytter p sin neste peker og q sin forrige peker til nye noden. Til slutt
 legger vi til en til endringer og antall.
 
-I oppgave 6
+I oppgave 6 for den boolean fjern metode sjekket vi for null-verdier og returnerer false hvis det er det. Neste sjekker
+vi om antall er lik én, altså hvis det er kun én verdi i listen så setter vi hode og hale lik null(0). Ellers går vi
+gjennom listen for å finne første forekomster av verdi med en while-løkka. q er noden som skal fjernes og p er noden
+foran. Hvis q er "null" returneres det false, verdien finnes ikke. Hvis q er lik hode, altså første noden skal fjernes
+flytter vi hode til neste noden og forrige pekeren til null. Hvis q er lik hale, altså siste noden skal fjernes flytter
+vi hale til neste siste noden p og setter neste pekeren til "null". Hvis q ikke er noen av de nevnte og verdien er
+mellom to andre noder lager vi en ny Node r som er noden bak den som skal fjernes. Så flytter vi p sin neste peker til r
+og r sin forrige peker lik p slik at ingen noder peker til q. Til sist setter vi q sin verdi og neste til "null", legge
+til en til endringer, trekk en fra antall og returnere true.
 
 I oppgave 7 brukte vi først en if, if else og else. Fant ut av at det ikke fungerte fordi vi ikke fikk fjernet 
 elementene i midten. Derfor gikk vi over til å bruke en for løkke, kunne også evt brukt en while løkke. 
