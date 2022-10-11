@@ -256,11 +256,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public String toString() {
         Node current = hode;
-        StringBuilder output = new StringBuilder("[");
+        StringBuilder ut = new StringBuilder("[");
         if (tom()) {
             return "[]";
         } else {
-            
+            while (current.neste != null) {
+                ut.append(current.verdi + ", ");
+                current = current.neste;
+            }
+            ut.append(current.verdi + "]");
+            return ut.toString();
         }
     }
 
