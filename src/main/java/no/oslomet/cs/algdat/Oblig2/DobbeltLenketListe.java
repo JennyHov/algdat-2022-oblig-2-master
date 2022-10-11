@@ -44,8 +44,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a) {
         Objects.requireNonNull(a,"Tabellen a er null!");
-        hode = hale = null;
-        for (T t : a) {
+        hode = hale = null;                 // initialiserser null-verdier
+        for (T t : a) {                     // unngår å ta med null-verdier fra tabell a
             if (t != null) {
                 Node node = new Node(t);
                 if (hode == null) {
