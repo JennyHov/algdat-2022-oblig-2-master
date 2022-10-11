@@ -310,6 +310,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer ++;
         antall = 0;
 
+       /*
+        Metode 2, kjører saktere enn første metode og beholder den derfor ikke
+        for (Node<T> t = hode; t != null; t = t.neste) {
+            fjern(0);
+        }
+         */
+
         /*
         for(Node<T> t = hode; t != null; t = t.neste){
             t.verdi = null;
@@ -319,15 +326,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer ++;
         antall = 0;
          */
-
-        /*
-        Metode 2, kjører saktere enn første metode og beholder den derfor ikke
-        for (Node<T> t = hode; t != null; t = t.neste) {
-            fjern(0);
-        }
-         */
-
-
     }
 
 
@@ -446,12 +444,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         for (int i = 0; i < liste.antall() - 1; i++) {
             int min_index = i;
             for (int j = i + 1; j < liste.antall(); j++) {
-                if ((c.compare(liste.hent(j), liste.hent(min_index))) < 0) {
+                if (c.compare(liste.hent(j), liste.hent(min_index)) < 0) {
                     min_index = j;
                 }
                 T temp3 = liste.hent(min_index);
-                liste.oppdater(min_index, liste.hent(j));
-                liste.oppdater(j, temp3);
+                liste.oppdater(min_index, liste.hent(i));
+                liste.oppdater(i, temp3);
             }
         }
     }
