@@ -62,7 +62,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
+        fratilKontroll(antall, fra, til);
+        endringer = 0;
+        Liste<T> sub = new DobbeltLenketListe<>();
     }
 
     @Override
