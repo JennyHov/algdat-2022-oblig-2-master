@@ -142,7 +142,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 pos++;
             }
             return midlertidig;
-        } else {}
+        } else {
+            if (indeks == antall-1) return hale;
+            Node midlertidig = hale;
+            int posisjon = antall-1;
+            while (posisjon > indeks) {
+                midlertidig = midlertidig.forrige;
+                posisjon--;
+            }
+            return midlertidig
+        }
     }
 
     @Override
