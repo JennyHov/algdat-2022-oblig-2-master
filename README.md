@@ -28,7 +28,14 @@ hale med neste-pekere og forrige-pekere (forrige-pekere benyttes i omvendtString
 Pekerne legger til verdiene av nodene inn i StringBuilderen. I leggInn(T verdi) metoden opprettes det nye noder med de 
 oppgitte verdiene, samt vi benytter oss av pekere for å koble nodene opp mot listen.  
 
-I oppgave 3 så brukte vi en ... til å ...
+I oppgave 3 så benyttet vi oss av if setninger i finnNode metoden. Hvis indeks var mindre enn halvparten av antall, så 
+benyttet vi oss av en while løkke som returnerer noden som finnes i indeksen. Gjennom hent(int indeks) metoden, så
+sjekker vi om indeksen er gyldig eller ikke. hent metoden benytter seg av finnNode for å returnere nodens verdi.
+Deretter lagres de returnerte verdiene fra hent metoden inn i oppdater metoden. Disse verdiene lagres i en temp variabel
+som oppdateres ved å legge inn nyverdier fra metoden finnNode. Deretter teller vi antall endringer og returnerer temp
+variabelen. I oppg. 3B så har vi laget en subliste metode, samt en fratilKontroll metode som vi har hentet fra
+kompendiet. fratilKontroll metoden sjekker om intervallet er lovlig innad i subliste metoden. Deretter lages det en ny
+liste hvor vi kopierer inn nodenes verdi inn i den nye lista.
 
 I oppgave 4 tok vi utgangspunkt i kildekoden til EnkeltLenketListe fasit. Først sjekker vi for "null"-verdier og
 returnerer -1 vis verdien er "null". Så lager vi en hjelpevariabel p lik hode. Med en for-løkka går vi gjennom hver p

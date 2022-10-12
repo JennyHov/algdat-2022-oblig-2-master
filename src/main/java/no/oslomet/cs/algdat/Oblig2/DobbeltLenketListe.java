@@ -164,7 +164,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 posisjon++;
             }
             return midlertidig;
-        } else {                                    // søker den andre halvdelen av listen
+        } else {                                    // søker indeks for første halvdel av listen
             if (indeks == antall-1) return hale;    // dersom indeks er like hale
             Node midlertidig = hale;
             int posisjon = antall-1;
