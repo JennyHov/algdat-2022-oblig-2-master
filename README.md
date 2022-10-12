@@ -21,7 +21,12 @@ hver node. Metoden tom sjekker om listen er tom. Dette gjøres ved å sjekke om 
 vi DobelltLenketListe(T[] a). Sistnevnte iterer gjennom et array og oppretter nye noder med pekere for alle noder som
 ikke har null-verdier. Har lagt inn teller for antall. 
 
-I oppgave 2 så brukte vi en ... til å ...
+I oppgave 2 benyttet vi oss av en stringBuilder som kunne ta imot tegnstrenger og bygge de opp. Stringbuilderen har vi 
+benyttet inne i ToString og omvendtString - metodene. gjennom if setninger i metodene kalles det på tom(). Dersom listen
+er tom vil metoden tom() returnere "[]" . I else setningen traverserer vi listen gjennom en while løkke fra hode til
+hale med neste-pekere og forrige-pekere (forrige-pekere benyttes i omvendtString når vi skal returnere listen baklengs). 
+Pekerne legger til verdiene av nodene inn i StringBuilderen. I leggInn(T verdi) metoden opprettes det nye noder med de 
+oppgitte verdiene, samt vi benytter oss av pekere for å koble nodene opp mot listen.  
 
 I oppgave 3 så brukte vi en ... til å ...
 
