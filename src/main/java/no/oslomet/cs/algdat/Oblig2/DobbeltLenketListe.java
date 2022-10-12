@@ -158,10 +158,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (indeks < antall/2) {                    //søker indeks for første halvdel av listen
             if (indeks == 0) return hode;           // dersom indeks er lik hode
             Node midlertidig = hode;
-            int pos = 0;
-            while (pos < indeks) {
+            int posisjon = 0;
+            while (posisjon < indeks) {
                 midlertidig = midlertidig.neste;
-                pos++;
+                posisjon++;
             }
             return midlertidig;
         } else {                                    // søker den andre halvdelen av listen
@@ -183,8 +183,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        indeksKontroll(indeks, false);
-        return finnNode(indeks).verdi;
+        indeksKontroll(indeks, false);      // sjekker om indeks er gyldig
+        return finnNode(indeks).verdi;      // returnerer indeksen til noden
     }
 
     @Override
@@ -202,11 +202,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        Objects.requireNonNull(nyverdi);
-        T temp = hent(indeks);
-        finnNode(indeks).verdi = nyverdi;
-        endringer++;
-        return temp;
+        Objects.requireNonNull(nyverdi);            // null-verdier ikke tillatt
+        T temp = hent(indeks);                      // legger gammel verdi inn i variabel
+        finnNode(indeks).verdi = nyverdi;           // legger inn ny verdi
+        endringer++;                                // økes med 1
+        return temp;                                // returnerer gammel verdi
     }
 
     @Override
