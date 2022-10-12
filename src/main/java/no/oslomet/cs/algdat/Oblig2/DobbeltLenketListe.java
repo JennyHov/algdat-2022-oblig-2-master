@@ -61,27 +61,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     // Programkode 1.2.3 a) fra kompendiet
     private static void fratilKontroll(int antall, int fra, int til) {
-        if (fra < 0)
+        if (fra < 0)                                    // fra er negativ
             throw new IndexOutOfBoundsException
                     ("fra(" + fra + ") er negativ!");
 
-        if (til > antall)
+        if (til > antall)                               // til er utenfor tabellen
             throw new IndexOutOfBoundsException
                     ("til(" + til + ") > antall(" + antall + ")");
 
-        if (fra > til)
+        if (fra > til)                                  // fra er større en til
             throw new IllegalArgumentException
                     ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
     public Liste<T> subliste(int fra, int til) {
-        fratilKontroll(antall, fra, til);
+        fratilKontroll(antall, fra, til);               // sjekker om intervallet er lovlig
         endringer = 0;
-        Liste<T> sub = new DobbeltLenketListe<>();
+        Liste<T> sub = new DobbeltLenketListe<>();      // lager ny liste
 
-        for (int i = fra; i < til; i++) {
-            T verdi = hent(i);
-            sub.leggInn(verdi);
+        for (int i = fra; i < til; i++) {               // kjører for løkke gjennom intervallet
+            T verdi = hent(i);                          // henter ut verdi
+            sub.leggInn(verdi);                         // legger verdi inn i liste
         }
         return sub;
     }
