@@ -155,8 +155,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks) {
-        if (indeks < antall/2) {
-            if (indeks == 0) return hode;
+        if (indeks < antall/2) {                    //søker indeks for første halvdel av listen
+            if (indeks == 0) return hode;           // dersom indeks er lik hode
             Node midlertidig = hode;
             int pos = 0;
             while (pos < indeks) {
@@ -164,8 +164,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 pos++;
             }
             return midlertidig;
-        } else {
-            if (indeks == antall-1) return hale;
+        } else {                                    // søker den andre halvdelen av listen
+            if (indeks == antall-1) return hale;    // dersom indeks er like hale
             Node midlertidig = hale;
             int posisjon = antall-1;
             while (posisjon > indeks) {
