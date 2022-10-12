@@ -16,7 +16,10 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 # Oppgavebeskrivelse
 
-I oppgave 1 så gikk vi frem ved å ...
+I oppgave 1 så laget vi først metoden antall. Metoden iterer gjennom listen med en for løkke og øker teller med 1 for
+hver node. Metoden tom sjekker om listen er tom. Dette gjøres ved å sjekke om noden hode har null-verdi. Deretter laget
+vi DobelltLenketListe(T[] a). Sistnevnte iterer gjennom et array og oppretter nye noder med pekere for alle noder som
+ikke har null-verdier. Har lagt inn teller for antall. 
 
 I oppgave 2 så brukte vi en ... til å ...
 
